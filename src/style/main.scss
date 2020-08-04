@@ -1,0 +1,43 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  margin: 0 auto;
+
+  .header {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    height: 64px;
+    z-index: 1000;
+    padding: 0px;
+    background-color: #fff;
+  }
+
+  .content {
+    border-radius: 5px;
+  }
+
+  .silde-menu {
+    position: fixed;
+    left: 0px;
+    height: 100vh;
+  }
+
+  .main {
+    min-height: calc(100vh - 64px);
+    background-color: #f0f2f5;
+    margin-top: 60px;
+
+    .breadcrumb {
+      margin: 10px 0;
+    }
+
+    .main-right {
+      margin: 10px 10px 10px 210px;
+    }
+  }
+}
