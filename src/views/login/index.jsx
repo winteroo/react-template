@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Icon, Input, Button } from 'antd';
-import { inject, observer } from 'mobx-react';
 
+import { inject, observer } from 'mobx-react';
 import './index.scss';
 
 @inject('local')

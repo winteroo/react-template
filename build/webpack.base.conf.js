@@ -56,7 +56,9 @@ module.exports = {
       use: [{
         loader: 'babel-loader'
       }],
-      include: [resolve('src')]
+      include: [
+        resolve('src')
+      ]
     },
     {
       test: /\.(js|jsx)$/,

@@ -9,6 +9,8 @@ const baseWebpackConfig = require('./webpack.base.conf');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 
 module.exports = merge(baseWebpackConfig, {
@@ -17,7 +19,7 @@ module.exports = merge(baseWebpackConfig, {
     // filename: utils.assetsPath('js/[name].[chunkhash].js'),
     // chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
     filename: 'js/[name].[chunkhash:8].js',
-    chunkFilename: 'js/[id].[chunkhash:8].js'
+    chunkFilename: 'js/[name].[chunkhash:8].js'
   },
   stats: {
     colors: true,
@@ -64,28 +66,38 @@ module.exports = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: './'
       }]
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     // 配置tree shaking
     usedExports: true,
     minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new OptimizeCSSAssetsPlugin(),
+      new TerserPlugin()
+    ],
     // 分离公共chunk在vendor文件中
     splitChunks: {
-      chunks: 'all', // 仅提取按需载入的module
+      // chunks: 'all', // 仅提取按需载入的module
       minSize: 30000, // 提取出的新chunk在两次压缩(打包压缩和服务器压缩)之前要大于30kb
       maxSize: 0, // 提取出的新chunk在两次压缩之前要小于多少kb，默认为0，即不做限制
-      minChunks: 1, // 被提取的chunk最少需要被多少chunks共同引入
+      minChunks: 2, // 被提取的chunk最少需要被多少chunks共同引入
       maxAsyncRequests: 5, // 最大按需载入chunks提取数
       maxInitialRequests: 3, // 最大初始同步chunks提取数
-      automaticNameDelimiter: '-', // 默认的命名规则（使用~进行连接）
-      name: true,
-      // name: 'vendor.js',
+      automaticNameDelimiter: '.', // 默认的命名规则（使用.进行连接）
       cacheGroups: { // 缓存组配置，默认有vendors和default
         vendors: {
+          name: 'vendors',
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
+          priority: -10,
+          chunks: 'all'
+        },
+        ant: {
+          name: 'ant',
+          test: /antd/,
+          priority: 10,
+          chunks: 'all'
         },
         default: {
           minChunks: 2,

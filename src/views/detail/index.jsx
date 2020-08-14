@@ -1,6 +1,7 @@
 import React from 'react';
 import HighInput from '../../components/input/highInput';
 import { inject, observer } from 'mobx-react';
+import { Button } from 'antd';
 
 @inject('detail')
 @observer
@@ -15,6 +16,7 @@ class Detail extends React.Component {
     return (
       <div>
         <p>detail</p>
+        <Button>测试打包</Button>
         <div>
           <HighInput {...inputProp} />
           <h2>{this.props.detail.value}</h2>

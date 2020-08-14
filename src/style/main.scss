@@ -9,11 +9,11 @@ body {
 
   .header {
     position: fixed;
-    width: 100%;
-    top: 0px;
-    height: 64px;
+    top: 0;
     z-index: 1000;
-    padding: 0px;
+    width: 100%;
+    height: 64px;
+    padding: 0;
     background-color: #fff;
   }
 
@@ -23,14 +23,14 @@ body {
 
   .silde-menu {
     position: fixed;
-    left: 0px;
+    left: 0;
     height: 100vh;
   }
 
   .main {
     min-height: calc(100vh - 64px);
-    background-color: #f0f2f5;
     margin-top: 60px;
+    background-color: #f0f2f5;
 
     .breadcrumb {
       margin: 10px 0;

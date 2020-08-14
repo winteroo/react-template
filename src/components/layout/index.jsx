@@ -1,9 +1,9 @@
 import React from 'react';
+import { Layout } from 'antd';
 import XrdMenu from '../menu';
 import { withRouter } from 'react-router-dom';
 import LayoutRouter from '../../router/layoutRoutes';
 import MyHeader from '@/views/header/index';
-import { Layout } from 'antd';
 
 const { Header, Content, Sider } = Layout;
 

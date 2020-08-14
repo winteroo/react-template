@@ -3,7 +3,6 @@ import MyRouter from './router/index';
 import { inject, observer } from 'mobx-react';
 import stores from './store/local';
 
-import 'antd/dist/antd.css';
 import './style/main.scss';
 
 @inject('local')
